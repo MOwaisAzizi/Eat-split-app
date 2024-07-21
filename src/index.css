@@ -23,7 +23,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
 .app {
@@ -36,8 +35,6 @@ body {
   grid-template-columns: 34rem 44rem;
   column-gap: 4rem;
   align-items: start;
-
-
 }
 
 .button {
@@ -49,7 +46,6 @@ body {
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
-
 }
 
 .button:hover {
@@ -122,7 +118,6 @@ form {
   gap: 1.2rem;
   background-color: var(--color-lightest);
   border-radius: 7px;
-
 }
 
 .form-add-friend {
@@ -133,14 +128,12 @@ form {
 .form-split-bill {
   grid-template-columns: 1fr 12rem;
   padding: 3.2rem 4rem;
-
 }
 @media screen and (max-width: 770px) {
   .form-split-bill {
     margin-top: 1rem;
   }
 }
-
 
 label {
   font-weight: 500;
