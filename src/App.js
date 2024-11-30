@@ -1,5 +1,6 @@
 import react, { useState } from 'react'
 
+//fake data
 const initialFriends = [
   {
     id: 118836,
@@ -41,9 +42,10 @@ export default function App() {
     setFriends(friends => [...friends, friend])
     setshowFormAddFrind(false)
   }
+
   function selectionHandler(friend) {
-    // setSelectedFriend(friend)
-    setSelectedFriend(selectedFr => selectedFr?.id == friend.id ? null : friend)
+    //for clicking the item more then one
+    setSelectedFriend(selectedFr => selectedFr?.id === friend.id ? null : friend)
   }
 
   function handleSplitBill(value) {
@@ -74,7 +76,6 @@ function FrindList({ friends, onSelection, selectedFrind }) {
     </ul>
   )
 }
-
 
 function Frinds({ frind, onSelection, selectedFrind }) {
   const isSelected = selectedFrind?.id == frind.id
