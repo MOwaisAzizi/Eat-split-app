@@ -47,7 +47,6 @@ export default function App() {
   }
 
   function handleSplitBill(value) {
-            //this Section======================
     setFriends(friends => friends.map(friend => friend.id == selectedFrind.id ? { ...friend, balance: friend.balance + value } : friend))
     setSelectedFriend(null)
   }
@@ -57,10 +56,9 @@ export default function App() {
       <div className="sidebar">
         <FrindList friends={friends} onSelection={selectionHandler} selectedFrind={selectedFrind} />
         {showFormAddFrind && <FormAddFrind onAddFriends={AddFriendHandler} />}
-
         <Button click={showFormAddFrindHandler}>{showFormAddFrind ? 'Close' : 'Add Friend'}</Button>
       </div>
-      {selectedFrind && <FormSplitBill selectedFriend={selectedFrind} onSplitBill={handleSplitBill} />}
+      {selectedFrind && <FormSplitBill key={selectedFrind.id} selectedFriend={selectedFrind} onSplitBill={handleSplitBill} />}
     </div>
   )
 }
@@ -78,10 +76,8 @@ function FrindList({ friends, onSelection, selectedFrind }) {
 }
 
 
-
 function Frinds({ frind, onSelection, selectedFrind }) {
   const isSelected = selectedFrind?.id == frind.id
-
   return (
     <li className={isSelected ? 'selected' : ''}>
       <img src={frind.image} alt={frind.name} /> <h3>{frind.name}</h3>
@@ -89,7 +85,6 @@ function Frinds({ frind, onSelection, selectedFrind }) {
         {frind.balance == 0 ? `You and ${frind.name} are even ` :
           frind.balance > 0 ? `${frind.name} owes you ${frind.balance}$` : `You awe ${Math.abs(frind.balance)} to ${frind.name}$`}
       </p>
-      {/* //this Section====================== */}
       <Button click={() => onSelection(frind)}>{isSelected ? 'Close' : 'Select'}</Button>
     </li>
   )
@@ -97,7 +92,7 @@ function Frinds({ frind, onSelection, selectedFrind }) {
 
 function FormAddFrind({ onAddFriends }) {
   const [name, setName] = useState('')
-  const [image, setImage] = useState(require('./images/images-6.jpg'))
+  const [image, setImage] = useState(require('./images/images-2.jpg'))
 
   function SubmitHandler(e) {
     e.preventDefault()
@@ -133,7 +128,6 @@ function FormSplitBill({ selectedFriend, onSplitBill }) {
 
   function billSubmitHandler(e) {
     e.preventDefault()
-     //this Section======================
     if (!paidByUser || !bill) return
     onSplitBill(whoIsPaying === 'user' ? paidByFriend : -paidByUser)
   }
@@ -155,7 +149,6 @@ function FormSplitBill({ selectedFriend, onSplitBill }) {
         value={paidByUser}
         onChange={(e) =>
           setPaidByUser(
-            //this Section======================
             Number(e.target.value) > bill ? paidByUser : Number(e.target.value)
           )
         }
